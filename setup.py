@@ -1,12 +1,13 @@
 from setuptools import setup, find_packages
 
-version = "1.0.0"
+version = "0.1.0"
 
 requires = [
     "setuptools",
     "argparse",
     "robotsuite",
     "corejet.core",
+    "corejet.testrunner>=1.0.1",
     "zope.interface",
     "zope.component",
 ]
