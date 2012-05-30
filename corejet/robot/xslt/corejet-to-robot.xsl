@@ -6,7 +6,7 @@
 *** Settings ***
 
 Meta: Id  <xsl:value-of select="@id"/>
-Meta: Title <xsl:value-of select="@title"/>
+Meta: Title  <xsl:value-of select="@title"/>
 <xsl:if test="count(given) + count(when) + count(then) > 0">
 
 Suite Setup  Background
