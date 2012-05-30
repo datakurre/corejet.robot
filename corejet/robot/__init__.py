@@ -41,7 +41,7 @@ def adaptRobotTestCaseToStory(context):
     for metadata in suite.setting_table.metadata:
         if metadata.name == u"Id":
             name = metadata.value
-        elif metadata.name == u"Name":
+        elif metadata.name == u"Title":
             title = metadata.value
 
     story = RobotStory(name, title)
