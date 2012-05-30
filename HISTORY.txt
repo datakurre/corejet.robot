@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+0.2.0 (2012-05-30)
+------------------
+
+- Fixed the XSLT and the adapter to use 'Meta: Title' instead to 'Meta: Name'
+  to be more coherent with @story-decorator.
+
+
 0.1.0 (2012-05-30)
 ------------------
 
