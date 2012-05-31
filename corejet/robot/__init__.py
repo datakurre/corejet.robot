@@ -36,7 +36,7 @@ def adaptRobotTestCaseToStory(context):
     steps and parsing the result with appendScenarios."""
 
     suite = context._robot_suite
-    name, title = (None, None)
+    name, title = (u"", u"")
 
     for metadata in suite.setting_table.metadata:
         if metadata.name == u"Id":
