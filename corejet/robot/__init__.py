@@ -63,16 +63,22 @@ def adaptRobotTestCaseToStory(context):
         # as Background-keyword
         if keyword.name == u"Background":
             for step in keyword.steps:
-                source += u"  ".join(step.as_list()) + u"\n"
+                source += u"\n".join(step.as_list()) + u"\n"
             source += u"\n"
 
     for scenario in suite.testcase_table.tests:
         source += u"Scenario: %s\n" % scenario.name
         for step in scenario.steps:
-            source += "  ".join(step.as_list()) + "\n"
+            source += u"\n".join(step.as_list()) + "\n"
         source += "\n"
 
     appendScenarios(story, source)
-    return story
+    for scenario in story.scenarios:
+        # we must prepend scenarios level givens, whens and thens with
+        # story level ones to support the behavior of corejet.testrunner
+        scenario.givens = story.givens + scenario.givens
+        scenario.whens = story.whens + scenario.whens
+        scenario.thens = story.thens + scenario.thens
+    return story.scenarios and story or None
 
 provideAdapter(adaptRobotTestCaseToStory)
