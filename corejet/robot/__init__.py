@@ -55,6 +55,7 @@ def adaptRobotTestCaseToStory(context):
             title = metadata.value
 
     story = RobotStory(name, title)
+    setattr(story, context._testMethodName, story.runTest)
     source = u""
 
     for keyword in suite.keyword_table.keywords:
