@@ -35,7 +35,17 @@ def adaptRobotTestCaseToStory(context):
     """Creates a CoreJet story out of RobotTestCase by concatenating
     steps and parsing the result with appendScenarios."""
 
-    suite = context._robot_suite
+    def find_suite(child_suite, default=None):
+        """Returns the first test suite, which contains tests."""
+        if child_suite.testcase_table.tests:
+            return child_suite
+        for grandchild in getattr(child_suite, 'children', []):
+            first_suite_with_test_cases = find_suite(grandchild)
+            if first_suite_with_test_cases:
+                return first_suite_with_test_cases
+        return default
+
+    suite = find_suite(context._robot_suite, context._robot_suite)
     name, title = (u"", u"")
 
     for metadata in suite.setting_table.metadata:
